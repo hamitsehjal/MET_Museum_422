@@ -17,7 +17,7 @@ export default function MainNav() {
     }
     return (
         <>
-            <Navbar className='fixed-top' variant='dark' bg="primary" expand="lg">
+            <Navbar variant='dark' bg="primary" expand="lg">
                 <Container fluid>
                     <Navbar.Brand >Hamit Sehjal</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
