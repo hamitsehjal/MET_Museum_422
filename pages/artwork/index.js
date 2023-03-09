@@ -46,12 +46,13 @@ export default function Artwork() {
     if (!data)
         return null
 
+
     return (
         <>
             {/* Rendering a row of horizontal components with gap of 1.5 rem between components */}
             <Row className="gy-4">
                 {artworkList.length > 0 ?
-                    artworkList.map((value) => (<Col lg={3} key={value}><ArtworkCard objectID={value} /></Col>)) :
+                    artworkList[page - 1].map((value) => (<Col lg={3} key={value}><ArtworkCard objectID={value} /></Col>)) :
                     <Col>
                         <Card style={{ width: '18rem' }}>
                             <Card.Body>
@@ -64,7 +65,7 @@ export default function Artwork() {
                     </Col>
                 }
             </Row>
-            {artworkList.length > 0 && <Row className="gy-4">
+            {artworkList.length > 0 && <Row className="gy-4 mt-4">
                 <Col >
                     <Pagination>
                         <Pagination.Prev onClick={previousPage} />

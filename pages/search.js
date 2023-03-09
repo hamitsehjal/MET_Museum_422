@@ -2,24 +2,24 @@ import { useRouter } from "next/router";
 import { Row, Col, Form, Button } from "react-bootstrap"
 import { useForm } from "react-hook-form";
 export default function AdvancedSearch() {
+    const router = useRouter();
 
     const { register, handleSubmit, formState: { errors } } = useForm()
     const submitForm = (data) => {
-        const router = useRouter();
+        console.log(data)
         let queryString = "";
-        queryString + `${data.searchBy}=true`;
-        if (data.geoLocation != undefined && data.geoLocation != null)
-            queryString + `&geoLocation=${geoLocation}`
+        queryString += `${data.searchBy}=true`;
+        // if (data.geoLocation != null && data.geoLocation != undefined)
+        data.geoLocation && (queryString += `&geoLocation=${data.geoLocation}`);
 
-        if (data.medium != undefined && data.medium != null)
-            queryString + `&medium=${medium}`
+        data.medium && (queryString += `&medium=${data.medium}`)
 
 
-        queryString + `&isOnView=${data.isOnView}`;
-        queryString + `&isHighlight=${data.isHighlight}`;
-        queryString + `&q=${data.q}`;
+        queryString += `&isOnView=${data.isOnView}`;
+        queryString += `&isHighlight=${data.isHighlight}`;
+        queryString += `&q=${data.q}`;
 
-        console.log(queryString)
+        console.log(`/artwork?${queryString}`)
         router.push(`/artwork?${queryString}`)
     }
     return (<>
