@@ -11,8 +11,8 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   return (
     <>
-      <ArtworkCard objectID={45734} />
-      <ArtworkCardDetail objectID={45734} />
+      {/* <ArtworkCard objectID={45734} />
+      <ArtworkCardDetail objectID={45734} /> */}
     </>
   )
 }
