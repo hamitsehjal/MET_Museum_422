@@ -11,47 +11,49 @@ export default function ArtworkCardDetail({ objectID }) {
 
     if (!data)
         return null;
+
+
     return (<>
 
-        <Card style={{ width: '18rem' }}>
+        <Card >
             {data.primaryImage && <Card.Img variant="top" src={data.primaryImage} />}
             <Card.Body>
                 <Card.Title>{data.title ? data.title : "N/A"}</Card.Title>
 
 
                 <Card.Text>
-                    {data.objectDate ? data.objectDate : "N/A"}
+                    <b>Date: </b>{data.objectDate ? data.objectDate : "N/A"}
                     <br />
-                    {data.classification ? data.classification : "N/A"}
-                    <br />
-
-                    {data.medium ? data.medium : "N/A"}
-                    <br />
+                    <b>classification: </b>{data.classification ? data.classification : "N/A"}
                     <br />
 
-                    {data.artistDisplayName ?
+                    <b>Medium: </b>{data.medium ? data.medium : "N/A"}
+                    <br />
+                    <br />
+
+                    <b>Artist: </b>{data.artistDisplayName ?
                         <>
-                            {data.artistDisplayName}
-                            <a href={data.artistWikidata_URL} target="_blank" rel="noreferrer" >wiki</a>
+                            {data.artistDisplayName}&nbsp;
+                            {data.artistWikidata_URL && <a href={data.artistWikidata_URL} target="_blank" rel="noreferrer" >(wiki)</a>}
                         </>
                         : "N/A"
                     }
 
                     <br />
-                    {data.creditLine ? data.creditLine : "N/A"}
+                    <b>Credit Line: </b> {data.creditLine ? data.creditLine : "N/A"}
                     <br />
 
-                    {data.dimensions ? data.dimensions : "N/A"}
+                    <b>Dimensions: </b> {data.dimensions ? data.dimensions : "N/A"}
                     <br />
 
 
                 </Card.Text>
 
 
-                <Link href={`/artwork/${objectID}`} passHref legacyBehavior>
+                {/* <Link href={`/artwork/${objectID}`} passHref legacyBehavior>
 
                     <Button variant="primary">{objectID}</Button>
-                </Link>
+                </Link> */}
             </Card.Body>
         </Card>
 
