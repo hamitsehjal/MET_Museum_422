@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Pagination, Row, Card, Col } from "react-bootstrap";
 import useSWR from 'swr'
 import ArtworkCard from "@/components/ArtworkCard";
+import Error from "next/error";
 const PER_PAGE = 12;
 export default function Artwork() {
     const [artworkList, setArtworkList] = useState([]);
@@ -11,15 +12,11 @@ export default function Artwork() {
     const finalQuery = router.asPath.split('?')[1];
 
     const previousPage = () => {
-        console.log("Previous")
-        console.log(page)
+
         if (page > 1)
             setPage(page => page - 1)
     }
     const nextPage = () => {
-        console.log("next")
-        console.log(page)
-        console.log(artworkList.length)
 
         if (page < artworkList.length)
             setPage(page => page + 1)
@@ -35,13 +32,16 @@ export default function Artwork() {
                 results.push(chunks)
             }
             setArtworkList(results)
+
             setPage(1)
 
         }
     }, [data])
 
-    if (error)
-        return (<Error statusCode={404} />)
+    if (error) {
+        return (<><Error statusCode={404} /></>)
+
+    }
 
     if (!data)
         return null
@@ -50,7 +50,7 @@ export default function Artwork() {
     return (
         <>
             {/* Rendering a row of horizontal components with gap of 1.5 rem between components */}
-            <Row className="gy-4">
+            <Row className="gy-4 gx-2">
                 {artworkList.length > 0 ?
                     artworkList[page - 1].map((value) => (<Col lg={3} key={value}><ArtworkCard objectID={value} /></Col>)) :
                     <Col>
