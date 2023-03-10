@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 export default function MainNav() {
-    const [searchField, setsearchField] = useState('search');
+    const [searchField, setsearchField] = useState('');
     const router = useRouter();
     const submitForm = (e) => {
         e.preventDefault();
@@ -17,8 +17,8 @@ export default function MainNav() {
     }
     return (
         <>
-            <Navbar variant='dark' bg="primary" expand="lg">
-                <Container fluid>
+            <Navbar className='fixed-top' variant='dark' bg="primary" expand="lg">
+                <Container>
                     <Navbar.Brand >Hamit Sehjal</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
@@ -41,13 +41,14 @@ export default function MainNav() {
                                 value={searchField}
                                 onChange={(e) => setsearchField(e.target.value)}
                             />
-                            <Button variant="outline-success" type='submit'>Search</Button>
+                            <Button variant="success" type='submit'>Search</Button>
                         </Form>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
             <br />
             <br />
+
         </>
     );
 }
