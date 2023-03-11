@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a modern, responsive user interface for searching and viewing data on the publicly available [Metropolitan Museum of Art Collection API](https://metmuseum.github.io/)
 
 ## Getting Started
 

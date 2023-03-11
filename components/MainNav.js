@@ -11,7 +11,6 @@ export default function MainNav() {
     const router = useRouter();
     const submitForm = (e) => {
         e.preventDefault();
-        // console.log(`/artwork?title=true&q=${searchField}`)
         router.push(`/artwork?title=true&q=${searchField}`)
 
     }

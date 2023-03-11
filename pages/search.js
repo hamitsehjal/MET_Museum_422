@@ -9,7 +9,6 @@ export default function AdvancedSearch() {
         console.log(data)
         let queryString = "";
         queryString += `${data.searchBy}=true`;
-        // if (data.geoLocation != null && data.geoLocation != undefined)
         data.geoLocation && (queryString += `&geoLocation=${data.geoLocation}`);
 
         data.medium && (queryString += `&medium=${data.medium}`)
@@ -19,7 +18,6 @@ export default function AdvancedSearch() {
         queryString += `&isHighlight=${data.isHighlight}`;
         queryString += `&q=${data.q}`;
 
-        console.log(`/artwork?${queryString}`)
         router.push(`/artwork?${queryString}`)
     }
     return (<>

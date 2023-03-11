@@ -34,7 +34,7 @@ export default function ArtworkCard({ objectID }) {
 
                 <Link href={`/artwork/${objectID}`} passHref legacyBehavior>
 
-                    <Button variant="primary">{objectID}</Button>
+                    <Button variant="primary">ID: {objectID}</Button>
                 </Link>
             </Card.Body>
         </Card>
