@@ -8,29 +8,32 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 export default function MainNav() {
     const [searchField, setsearchField] = useState('');
+    const [isExpanded, setIsExpanded] = useState(false);
     const router = useRouter();
     const submitForm = (e) => {
         e.preventDefault();
+        setIsExpanded(false);
         router.push(`/artwork?title=true&q=${searchField}`)
 
     }
     return (
         <>
-            <Navbar className='fixed-top' variant='dark' bg="primary" expand="lg">
+            <Navbar className='fixed-top' variant='dark' bg="primary" expand="lg" expanded={isExpanded}>
                 <Container>
                     <Navbar.Brand >Hamit Sehjal</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="navbarScroll" />
+                    <Navbar.Toggle aria-controls="navbarScroll" onClick={(e) => setIsExpanded(!isExpanded)} />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav
                             className="me-auto my-2 my-lg-0"
                             style={{ maxHeight: '100px' }}
                             navbarScroll
                         >
-                            <Link passHref legacyBehavior href='/'><Nav.Link>Home</Nav.Link></Link>
-                            <Link passHref legacyBehavior href='/search'><Nav.Link>Advanced Search</Nav.Link></Link>
+                            <Link passHref legacyBehavior href='/'><Nav.Link onClick={(e) => setIsExpanded(false)}>Home</Nav.Link></Link>
+                            <Link passHref legacyBehavior href='/search' ><Nav.Link onClick={(e) => setIsExpanded(false)}>Advanced Search</Nav.Link></Link>
 
 
                         </Nav>
+                        &nbsp;
                         <Form className="d-flex" onSubmit={submitForm}>
                             <Form.Control
                                 type="search"
@@ -42,6 +45,8 @@ export default function MainNav() {
                             />
                             <Button variant="success" type='submit'>Search</Button>
                         </Form>
+                        &nbsp;
+
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
