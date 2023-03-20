@@ -4,6 +4,10 @@ import { Pagination, Row, Card, Col } from "react-bootstrap";
 import useSWR from 'swr'
 import ArtworkCard from "@/components/ArtworkCard";
 import Error from "next/error";
+import validObjectIDList from '@/public/data/validObjectIDList.json'
+
+
+
 const PER_PAGE = 12;
 export default function Artwork() {
     const [artworkList, setArtworkList] = useState([]);
@@ -27,10 +31,13 @@ export default function Artwork() {
     useEffect(() => {
         if (data != null && data != undefined) {
             let results = [];
-            for (let i = 0; i < data?.objectIDs?.length; i += PER_PAGE) {
-                let chunks = data?.objectIDs?.slice(i, i + PER_PAGE)
+            let filteredResults = validObjectIDList.objectIDs.filter(x => data.objectIDs?.includes(x))
+            for (let i = 0; i < filteredResults.length; i += PER_PAGE) {
+                let chunks = filteredResults.slice(i, i + PER_PAGE)
                 results.push(chunks)
             }
+
+
             setArtworkList(results)
 
             setPage(1)
