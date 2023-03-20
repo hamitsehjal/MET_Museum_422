@@ -3,8 +3,26 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
 import Error from 'next/error'
+import { useAtom } from 'jotai';
+import { favoriteAtom } from '@/store';
+import { useState } from 'react';
 export default function ArtworkCardDetail({ objectID }) {
-    const { data, error } = useSWR(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectID}`)
+    const [favouritesList, setFavouritesList] = useAtom(favoriteAtom);
+    const [showAdded, setShowAdded] = useState(favouritesList.includes(objectID) ? true : false)
+
+    const favouritesClicked = () => {
+        if (showAdded) {
+
+            setFavouritesList(current => current.filter(fav => fav != objectID));
+            setShowAdded(false);
+        }
+        else {
+            setFavouritesList(current => [...current, objectID])
+            setShowAdded(true)
+        }
+    }
+
+    const { data, error } = useSWR(objectID ? `https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectID}` : null)
 
     if (error)
         return (<Error statusCode={404} />)
@@ -45,15 +63,12 @@ export default function ArtworkCardDetail({ objectID }) {
 
                     <b>Dimensions: </b> {data.dimensions ? data.dimensions : "N/A"}
                     <br />
+                    <Button variant={showAdded ? 'primary' : 'outline-primary'} onClick={favouritesClicked}>{showAdded ? "+ Favourite (added)" : "+ Favourite"}</Button>
 
 
                 </Card.Text>
 
 
-                {/* <Link href={`/artwork/${objectID}`} passHref legacyBehavior>
-
-                    <Button variant="primary">{objectID}</Button>
-                </Link> */}
             </Card.Body>
         </Card>
 
