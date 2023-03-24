@@ -9,7 +9,6 @@ import { useState } from 'react';
 export default function ArtworkCardDetail({ objectID }) {
     const [favouritesList, setFavouritesList] = useAtom(favoriteAtom);
     const [showAdded, setShowAdded] = useState(favouritesList.includes(objectID) ? true : false)
-    console.log(favouritesList);
 
     const favouritesClicked = () => {
         if (showAdded) {

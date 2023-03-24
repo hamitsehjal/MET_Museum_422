@@ -9,7 +9,6 @@ export default function AdvancedSearch() {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
     const submitForm = (data) => {
-        console.log(data)
         let queryString = "";
         queryString += `${data.searchBy}=true`;
         data.geoLocation && (queryString += `&geoLocation=${data.geoLocation}`);

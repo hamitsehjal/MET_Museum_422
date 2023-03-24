@@ -56,7 +56,6 @@ export default function Artwork() {
 
     return (
         <>
-            {/* Rendering a row of horizontal components with gap of 1.5 rem between components */}
             <Row className="gy-4 gx-2">
                 {artworkList.length > 0 ?
                     artworkList[page - 1].map((value) => (<Col lg={3} key={value}><ArtworkCard objectID={value} /></Col>)) :
