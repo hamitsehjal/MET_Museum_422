@@ -4,6 +4,7 @@ import { Row, Col, Card, Pagination } from "react-bootstrap";
 import ArtworkCard from "@/components/ArtworkCard";
 export default function Favourites() {
     const [favouritesList] = useAtom(favoriteAtom);
+    if (!favouritesList) return null;
     return (<>
         {/* Rendering a row of horizontal components with gap of 1.5 rem between components */}
         <Row className="gy-4 gx-2">
