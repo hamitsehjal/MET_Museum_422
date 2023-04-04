@@ -2,6 +2,7 @@ import '@/styles/globals.css'
 import '@/styles/bootstrap.min.css'
 import Layout from '@/components/Layout'
 import { SWRConfig } from 'swr'
+import RouteGuard from '@/components/RouteGuard'
 
 const swrConfig = {
   fetcher:
@@ -23,11 +24,12 @@ const swrConfig = {
 }
 
 export default function App({ Component, pageProps }) {
-  return <Layout>
-    <SWRConfig value={swrConfig}>
-      <Component {...pageProps} />
-    </SWRConfig>
-  </Layout>
-
+  return <RouteGuard>
+    <Layout>
+      <SWRConfig value={swrConfig}>
+        <Component {...pageProps} />
+      </SWRConfig>
+    </Layout>
+  </RouteGuard>
 
 }
