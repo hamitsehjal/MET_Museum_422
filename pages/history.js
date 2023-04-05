@@ -6,6 +6,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { Card, ListGroupItem, Button } from "react-bootstrap";
 import styles from '@/styles/History.module.css'
 import { removeFromHistory } from "@/lib/userData";
+import React from "react";
 
 export default function History() {
     const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
@@ -34,7 +35,7 @@ export default function History() {
     }
     return (<>
 
-        {parsedHistory.length > 0 ? <ListGroup>{parsedHistory.map((historyItem, index) =>
+        {/* {parsedHistory.length > 0 ? <ListGroup>{parsedHistory.map((historyItem, index) =>
             <ListGroupItem className={styles.historyListItem} key={index} onClick={e => historyClicked(e, index)}>
                 {Object.keys(historyItem).map(key => (<>{key}: <strong>{historyItem[key]}</strong>&nbsp;</>))}
                 <Button className="float-end" variant="danger" size="sm"
@@ -50,6 +51,28 @@ export default function History() {
                     </Card.Text>
                 </Card.Body>
             </Card>
-        }
+        } */}
+        {parsedHistory.length > 0 ? (
+            <ListGroup>
+                {parsedHistory.map((historyItem, index) => (
+                    <ListGroupItem className={styles.historyListItem} key={index} onClick={e => historyClicked(e, index)}>
+                        {Object.keys(historyItem).map(key => (
+                            <React.Fragment key={key}>
+                                {key}: <strong>{historyItem[key]}</strong>&nbsp;
+                            </React.Fragment>
+                        ))}
+                        <Button className="float-end" variant="danger" size="sm" onClick={e => removeHistoryClicked(e, index)}>&times;</Button>
+                    </ListGroupItem>
+                ))}
+            </ListGroup>
+        ) : <Card style={{ width: '18rem' }}>
+            <Card.Body>
+                <Card.Title>Nothing Here</Card.Title>
+                <Card.Text>
+                    Try searching for some artwork
+                </Card.Text>
+            </Card.Body>
+        </Card>}
+
     </>)
 }
