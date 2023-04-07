@@ -12,6 +12,7 @@ export default function ArtworkCardDetail({ objectID }) {
     const [favouritesList, setFavouritesList] = useAtom(favoriteAtom);
     const [showAdded, setShowAdded] = useState(false)
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         setShowAdded(favouritesList?.includes(objectID))
     }, [favouritesList])
@@ -22,14 +23,10 @@ export default function ArtworkCardDetail({ objectID }) {
     const favouritesClicked = async () => {
         if (showAdded) {
 
-            // setFavouritesList(current => current.filter(fav => fav != objectID));
             setFavouritesList(await removeFromFavourites(objectID))
-            // setShowAdded(false);
         }
         else {
-            // setFavouritesList(current => [...current, objectID])
             setFavouritesList(await addToFavourites(objectID))
-            // setShowAdded(true)
         }
     }
 

@@ -25,7 +25,8 @@ export default function RouteGuard(props) {
         return () => {
             router.events.off('routeChangeComplete', authCheck);
         };
-    }, []);
+    });
+
 
     function authCheck(url) {
         const path = url.split('?')[0];
