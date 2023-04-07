@@ -81,7 +81,7 @@ export default function MainNav() {
 
                                 <Link passHref legacyBehavior href='/favourites' ><NavDropdown.Item onClick={(e) => setIsExpanded(false)} active={router.pathname === '/favourites' && token}>Favourites</NavDropdown.Item></Link>
                                 <Link passHref legacyBehavior href='/history' ><NavDropdown.Item onClick={(e) => setIsExpanded(false)} active={router.pathname === '/history' && token}>Search History</NavDropdown.Item></Link>
-                                {token && <Link passHref legacyBehavior href='/' ><NavDropdown.Item onClick={(e) => { setIsExpanded(false); logout() }} >Logout</NavDropdown.Item></Link>}
+                                {token && <Link passHref legacyBehavior href='/' ><NavDropdown.Item onClick={() => logout()} >Logout</NavDropdown.Item></Link>}
 
                             </NavDropdown>
                         </Nav>}
