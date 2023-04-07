@@ -19,7 +19,9 @@ export default function MainNav() {
     const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom)
     const router = useRouter();
     const submitForm = async (e) => {
+
         e.preventDefault();
+        setsearchField('')
         setIsExpanded(false);
         const queryString = `title=true&q=${searchField}`
         // setSearchHistory(current => [...current, queryString])
